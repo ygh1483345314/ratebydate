@@ -103,7 +103,6 @@ def crow(erectDate, nothing, pjname, page):
             rate_09 = crow(erectDate, nothing, pjname, page - 1);  # 递归 找到便往上抛
     return rate_09  # 返回九点30最后一条数据 由于排序为倒序,最后一条即为 九点最早的汇率
 
-
 def getPageCount(erectDate, nothing, pjname):
     html = getHtml(erectDate, nothing, pjname, 1)[1]  # 第一次先抓 总页数
     reg = re.compile(r"(?<=var m_nRecordCount = )\d+")
@@ -112,7 +111,6 @@ def getPageCount(erectDate, nothing, pjname):
     if (int(match.group(0)) > 20):  # 每页20条数据 算最大页
         pageAll = math.ceil(int(match.group(0)) / 20);  # 向上取整数
     return pageAll
-
 
 if __name__ == '__main__':
     obj=getRate('2019-11-18')

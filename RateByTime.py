@@ -43,7 +43,7 @@ def getRate(dateb):
     ];
     lists = [];
     for pjcode in pjcodes:
-        rate_09 = crow(dateb, dateb, pjcode['value'], None);
+        rate_09 = crow(dateb, dateb, pjcode['key'], None);
         if (len(rate_09)) != 0:
             print("正在获取"+rate_09[0]+" 汇率")
             rate_dic = {};
@@ -62,15 +62,19 @@ def getRate(dateb):
 def getHtml(erectDate, nothing, pjname, page):
     # 定义要传的json  formdata 内容 通过post 请求 拿到 html代码 erectDate开始时间 nothing结束时间  pjname货币代码 page页数 时间一般 开始和结束为同一天
     pyload = {"erectDate": erectDate,
-              "nothing": nothing, "pjname": pjname, "page": page}
+              "nothing": nothing, "pjname": pjname, "page": page, "head": "head_620.js", "bottom": "ottom_591.js"}
 
     # 定义浏览器头部 防止被拦截
     headers = {
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "Accept": "text / html, application / xhtml + xml, application / xml;q = 0.9, image / webp, image / apng, * / *;q = 0.8",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Origin": "https://srh.bankofchina.com",
+        "Referer": "https://srh.bankofchina.com/search/whpj/search_cn.jsp",
+        "Upgrade-Insecure-Requests": "1",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
         "User-Agent": "Mozilla / 5.0(WindowsNT 10.0;WOW64) AppleWebKit / 537.36(KHTML, likeGecko) Chrome / 68.0.3440.106 Safari / 537.36"
     }
-    response = requests.post("http://srh.bankofchina.com/search/whpj/search.jsp", data=pyload, headers=headers)
+    # response = requests.post("http://srh.bankofchina.com/search/whpj/search.jsp", data=pyload, headers=headers)
+    response = requests.post("https://srh.bankofchina.com/search/whpj/search_cn.jsp", data=pyload, headers=headers)
     # 转化为html对象
     html = etree.HTML(response.text);
     return (html, response.text)

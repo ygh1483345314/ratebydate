@@ -1,5 +1,5 @@
 # 需求描述
-> 公司财务需求，需要中国银行每天9点30分以后第一条汇率数据，由于网上汇率接口都是实时汇率没办法定点查询数据，故而从[中国银行外汇牌价](http://srh.bankofchina.com/search/whpj/search.jsp)(http://srh.bankofchina.com/search/whpj/search.jsp) 抓取数据。
+> 公司财务需求，需要中国银行每天9点30分以后第一条汇率数据，由于网上汇率接口都是实时汇率没办法定点查询数据，故而从[中国银行外汇牌价](https://srh.bankofchina.com/search/whpj/search_cn.jsp)(https://srh.bankofchina.com/search/whpj/search_cn.jsp) 抓取数据。
 # 环境搭建
 > 项目采用python3.6
 ## 依赖安装
